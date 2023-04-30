@@ -6,7 +6,7 @@
 
 # 安装
 
-采用vite创建项目,  使用 npm:
+采用vite创建项目,  使用 pnpm:
 
 使用 pnpm
 ```bash
