@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@pages/*": ["src/pages/*"],
+      "@common/*": ["src/components/common/*"],
+      "@components/*": ["src/components/components/*"],
+      "@views/*": ["src/views/*"],
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"],
+      "@api/*": ["src/api/*"],
+      "@plugins/*": ["src/plugins/*"],
+      "@router/*": ["src/router/*"],
+      "@hooks/*": ["src/hooks/*"],
+
+      "@store/*": ["src/store/*"],
+      "@layout/*": ["src/layout/*"],
+      "@constants/*": ["src/constants/*"]
+    },
+    "typeRoots": [
+      "./src/@types"
+    ],
+    "noEmit": true,
+    "noEmitOnError": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*.vue", "./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
