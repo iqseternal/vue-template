@@ -7,7 +7,7 @@ import { dos } from './asyncModule';
 export { staticReceptionModule } from './staticModule';
 
 export const asyncReceptionModule: RouteRecordRaw = {
-  name: RECEPTION_NAME,
+  name: RECEPTION_NAME + 'ASYNC',
   path: RECEPTION_PATH,
   component: RECEPTION_LAYOUT,
   children: [

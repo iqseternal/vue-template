@@ -35,15 +35,19 @@ export const useTagsViewStore = () => {
 
   //#region del
   const delVisitedView = (view: ITagView) => {
+    // if (visitedViews.value.length <= 1) return;
+
     for (const [i, v] of visitedViews.value.entries()) {
       if (v.path === view.path) {
-        visitedViews.value.splice(i, 1)
+        visitedViews.value.splice(i, 1);
         break
       }
     }
   }
   const delCachedView = (view: ITagView) => {
-    if (typeof view.name !== "string") return
+    // if (cachedViews.value.length <= 1) return;
+    if (typeof view.name !== "string") return;
+
     const index = cachedViews.value.indexOf(view.name)
     index > -1 && cachedViews.value.splice(index, 1)
   }
@@ -73,6 +77,7 @@ export const useTagsViewStore = () => {
     const affixTags = visitedViews.value.filter((tag) => tag.meta?.affix)
     visitedViews.value = affixTags
   }
+
   const delAllCachedViews = () => {
     cachedViews.value = []
   }

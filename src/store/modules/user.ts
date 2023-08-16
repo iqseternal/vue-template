@@ -69,5 +69,5 @@ export const useUserStore = defineStore("user", () => {
 
 /** 在 setup 外使用 */
 export function useUserStoreHook() {
-  return useUserStore(store)
+  return useUserStore(store);
 }

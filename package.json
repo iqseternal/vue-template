@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "serve": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "depcheck": "depcheck",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "@suey/packages": "^1.0.13",
+    "@suey/packages": "^1.1.4",
     "dayjs": "^1.11.7",
     "element-plus": "^2.3.3",
     "gsap": "^3.11.5",
@@ -43,8 +43,10 @@
     "ant-design-vue": "^3.2.18",
     "depcheck": "^1.4.3",
     "fast-glob": "^3.2.12",
+    "terser": "^5.19.2",
     "typescript": "^5.0.4",
     "vite": "^4.3.1",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.30.1",

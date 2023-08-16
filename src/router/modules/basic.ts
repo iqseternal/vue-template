@@ -20,7 +20,7 @@ export const rootRoute: RouteRecordRaw = {
 export const receptionFailedRoute: RouteRecordRaw = {
   name: RECEPTION_NOT_FOUND_NAME,
   path: `${RECEPTION_PATH}/:productName*`,
-  redirect: RECEPTION_PATH
+  redirect: PAGE_NOT_FOUND_PATH
 }
 
 /** board 未找到的路由 */

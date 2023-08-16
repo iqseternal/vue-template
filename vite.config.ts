@@ -16,6 +16,8 @@ import proxy from './proxy.config';
 import svgLoader from 'vite-svg-loader';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
+import viteGzip from 'vite-plugin-compression';
+
 export default defineConfig(({ mode }) => {
   return {
     resolve: { alias },
@@ -54,6 +56,10 @@ export default defineConfig(({ mode }) => {
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
         symbolId: 'icon-[dir]-[name]'
+      }),
+
+      viteGzip({
+        threshold: 512000
       })
     ],
   }

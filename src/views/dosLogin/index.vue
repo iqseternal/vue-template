@@ -77,6 +77,7 @@ createCode();
       <div class="title">
         <img src="@/assets/layout/logo-text-2.png" />
       </div>
+
       <div class="content">
         <ElForm ref="loginFormRef" :model="loginForm" :rules="loginFormRules" @keyup.enter="handleLogin">
           <ElFormItem prop="username">
@@ -135,7 +136,10 @@ createCode();
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100%;
+  min-width: 400px;
+  // min-height: 100%;
+  height: 100vh;
+
   .theme-switch {
     position: fixed;
     top: 5%;

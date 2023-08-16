@@ -3,35 +3,28 @@
     <div class="error-page-svg">
       <slot />
     </div>
-    <!-- <router-link to="/"> -->
-      <ElButton @click="toRootPath" type="primary">回到首页</ElButton>
-    <!-- </router-link> -->
+    <section>
+      <ElButton @click="() => $router.replace(RECEPTION_PATH)" type="primary">回到首页</ElButton>
+      <ElButton @click="() => $router.replace(DASHBOARD_LOGIN_PATH)" type="primary">回到控制台</ElButton>
+    </section>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ElButton } from 'element-plus';
 
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const toRootPath = () => {
-
-  console.log(1);
-  router.replace('/reception/home');
-
-}
-
+import { RECEPTION_PATH, DASHBOARD_LOGIN_PATH } from '@router/constant';
 </script>
 
 <style lang="scss" scoped>
+
 .error-page {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   &-svg {
     width: 400px;
     margin-bottom: 50px;

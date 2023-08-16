@@ -5,9 +5,17 @@ import { CacheKey } from '@/constants';
 
 import { ckGet, ckRemove, ckSet } from '@suey/packages/storage';
 
-export const getToken = (decrypt = false) => ckGet(CacheKey.TOKEN, { decrypt });
+export const getToken = (decrypt = false) => {
+  const token = ckGet(CacheKey.TOKEN) as string ?? '';
+  if (decrypt) return aesDecrypt(token);
 
-export const setToken = (token: string) => ckSet(CacheKey.TOKEN, token, 1, { encrypt: true });
+  return token;
+}
+
+export const setToken = (token: string, encrypt = true) => {
+  if (encrypt) ckSet(CacheKey.TOKEN, aesEncrypt(token), 1);
+  else ckSet(CacheKey.TOKEN, token, 1);
+}
 
 export const removeToken = () => ckRemove(CacheKey.TOKEN);
 

@@ -1,12 +1,21 @@
 
-<template>
-  <div>
-    About Page!
-  </div>
-</template>
+<script lang="tsx">
 
-<script lang="ts" setup>
+import { defineComponent } from 'vue';
 
+function HelloWorld() {
+  return (<div>HelloWorld!</div>);
+}
+
+export default defineComponent({
+
+  setup() {
+
+    return () => (
+      <HelloWorld></HelloWorld>
+    )
+  }
+});
 </script>
 
 <style lang="scss" scoped>

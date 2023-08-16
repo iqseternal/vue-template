@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, ref, watch, inject } from "vue"
+import { getCurrentInstance, onMounted, ref, watch, inject, Ref } from "vue"
 import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type ITagView, } from '../../store';
 import { DEFINE_DASHBOARD_PROVIDER } from '../../external';
@@ -7,7 +7,7 @@ import { useUserStore } from '@store/modules/user';
 import ScrollPane from "./ScrollPane.vue"
 import path from "path-browserify"
 import { Close } from "@element-plus/icons-vue"
-import { ElIcon } from 'element-plus';
+import { ElIcon, ElMessage } from 'element-plus';
 
 const instance = getCurrentInstance();
 const router = useRouter();
@@ -72,10 +72,15 @@ const addTags = () => {
 
 const refreshSelectedTag = (view: ITagView) => {
   tagsViewStore.delCachedView(view)
-  router.replace({ path: "/redirect" + view.path, query: view.query })
+  router.replace({ path: view.path, query: view.query })
 }
 
 const closeSelectedTag = (view: ITagView) => {
+  if (tagsViewStore.visitedViews.value.length <= 1) {
+    ElMessage.warning(`最后一个标签页, 不允许删除`);
+    return;
+  }
+
   tagsViewStore.delVisitedView(view)
   tagsViewStore.delCachedView(view)
   if (isActive(view)) {
@@ -92,26 +97,27 @@ const closeOthersTags = () => {
 }
 
 const closeAllTags = (view: ITagView) => {
-  tagsViewStore.delAllVisitedViews()
-  tagsViewStore.delAllCachedViews()
-  if (affixTags.some((tag) => tag.path === route.path)) {
-    return
-  }
-  toLastView(tagsViewStore.visitedViews, view)
+  tagsViewStore.delAllVisitedViews();
+  tagsViewStore.delAllCachedViews();
+
+  if (affixTags.some((tag) => tag.path === route.path)) return;
+  addTags();
 }
 
-const toLastView = (visitedViews: ITagView[], view: ITagView) => {
-  const latestView = visitedViews.slice(-1)[0]
+const toLastView = (visitedViews: Ref<ITagView[]>, view: ITagView) => {
+
+  const latestView = visitedViews.value.slice(-1)[0];
+
   if (latestView !== undefined && latestView.fullPath !== undefined) {
-    router.push(latestView.fullPath)
+    router.push(latestView.fullPath);
   } else {
     // 如果 TagsView 全部被关闭了，则默认重定向到主页
-    if (view.name === "Dashboard") {
+    // if (view.name === "Dashboard") {
       // 重新加载主页
-      router.push({ path: "/redirect" + view.path, query: view.query })
-    } else {
-      router.push("/")
-    }
+    router.push({ path: view.path, query: view.query, replace: true });
+    // } else {
+      // router.push("/")
+    // }
   }
 }
 

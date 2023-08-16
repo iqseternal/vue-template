@@ -17,7 +17,7 @@ export const staticBashboardModule: RouteRecordRaw[] = [
 
 export const asyncDashboardModule: RouteRecordRaw = {
   path: DASHBOARD_PATH,
-  name: DASHBOARD_NAME,
+  name: DASHBOARD_NAME + 'ASYNC',
   component: DASHBOARD_LAYOUT,
   redirect: DASHBOARD_PATH + '/home',
   meta: {

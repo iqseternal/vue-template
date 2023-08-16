@@ -1,5 +1,4 @@
 import { request, apiGet, apiPost } from "@utils/request";
-import { ApiPromise } from '@suey/packages/request';
 
 export type LoginApiData = { username: string, password: string, code: string }
 export function loginApi(data) {
@@ -18,6 +17,8 @@ export function getLoginCodeApi(): any {
 /** 获取用户详情 */
 export function getUserInfoApi() {
   return apiPost('/user/getUserinfo', {
-    needAuth: true
+    hConfig: {
+      needAuth: true
+    }
   })
 }

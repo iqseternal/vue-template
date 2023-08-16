@@ -1,8 +1,6 @@
 import { loadEnv } from 'vite';
 import type { ProxyOptions } from 'vite';
 
-type Record<K, V> = K extends string ? { [K: string]: V } : V;
-
 const proxy = (mode: string): Record<string, string | ProxyOptions> => {
   const env = loadEnv(mode, __dirname, '');
 

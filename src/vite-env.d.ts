@@ -53,6 +53,8 @@ declare module '*.webp' {
 
 declare module '*.css?raw';
 
+declare module '*.svg?component';
+
 // ant-design-vue
 declare module 'ant-design-vue/es/locale-provider/*' {
   const LocaleMessage: { [key: string]: any }

@@ -15,6 +15,14 @@ import './style.scss';
 ;(async () => {
   const app = createApp(App);
 
+  app.mixin({
+    methods: {
+      a() {
+        return 1;
+      }
+    }
+  });
+
   app.use(store);
 
   app.use(router);

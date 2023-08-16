@@ -11,17 +11,23 @@ const isOkStatus = (status: number): boolean => {
   return false;
 }
 
-export const { request, createApi, apiGet, apiPost } = createApiRequest(import.meta.env.VITE_APP_API, {
+export const { request, createApi, apiGet, apiPost } = createApiRequest<{
+  needAuth?: boolean;
+
+}>(import.meta.env.VITE_APP_API, {}, {
   onFulfilled: config => {
     if (config.hConfig?.needAuth) {
       if (!config.headers) config.headers = {};
 
-      if (getToken()) config.headers['authorization'] = 'Bearer ' + getToken(false);
+      if (getToken()) config.headers['authorization'] = 'Bearer ' + getToken(true);
     }
+
+    console.log(config.headers);
   },
   onRejected: config => Promise.reject(config)
 }, {
   onFulfilled: response => {
+
     console.log(response.data);
 
     if (response.data.status && response.data.flag) {
@@ -32,7 +38,6 @@ export const { request, createApi, apiGet, apiPost } = createApiRequest(import.m
 
       return Promise.resolve(response.data);
     }
-
     return Promise.resolve(response);
   },
   onRejected: err => {
